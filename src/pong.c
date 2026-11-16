@@ -81,7 +81,7 @@ int main ( void ) {
     }    
 
     if (offScreen) {
-      ballSpeed.x = newSpeed();	/* TODO randint this */
+      ballSpeed.x = newSpeed();
       ballSpeed.y = newSpeed();
       ball.x = screenWidth / 2 - 12;
       ball.y = screenHeight / 2 + 12; /* idk */

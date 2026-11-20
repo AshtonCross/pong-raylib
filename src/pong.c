@@ -4,8 +4,9 @@
   Github.com/AshtonCross
 
   TODO:
-        - Rework the ball logic to make it more fun.
-        - Make the text look less weird.
+        - Maybe consider making the ball's acceleration linear instead of 1.1x?
+        - Consider trying to make the paddles inflict motion onto the ball so
+            the player can "steer" the ball?
  */
 
 #include <raylib.h>
@@ -63,7 +64,11 @@ int main ( void ) {
     collisionOne = CheckCollisionRecs(paddleOne, ball);
     collisionTwo = CheckCollisionRecs(paddleTwo, ball);
 
-    if (collisionOne || collisionTwo) ballSpeed.x *= -1.1;
+    if (collisionOne || collisionTwo) {
+      ballSpeed.x *= -1.1; /* Perhaps accelerate linearly instead? */
+      ballSpeed.y += (float)GetRandomValue(-200, 200);
+    }
+
     // useful for later?
     /* if (collisionOne)  */
     /* if (collisionTwo)  */
@@ -97,7 +102,7 @@ int main ( void ) {
       DrawRectangleRec(paddleTwo, WHITE);
       DrawRectangleRec(ball, WHITE);
 
-      DrawText(TextFormat("%i", p1Score), 50, 70, 30, WHITE);
+      DrawText(TextFormat("%i", p1Score), 150, 70, 30, WHITE);
       DrawText(TextFormat("%i", p2Score), 600, 70, 30, WHITE);
     }
     EndDrawing();
